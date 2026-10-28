@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Pragati Classes</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">P</div>
+        <div>
+          <strong>Pragati Classes</strong>
+          <small>Admin Panel</small>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-link active" data-page="dashboard">📊 Dashboard</button>
+        <button class="nav-link" data-page="students">👨‍🎓 Students</button>
+        <button class="nav-link" data-page="courses">📚 Courses & Batches</button>
+        <button class="nav-link" data-page="materials">📄 Study Materials</button>
+        <button class="nav-link" data-page="crashVideos">
+  <span>🎬</span>
+  <span>Crash Course Videos</span>
+</button>
+        <button class="nav-link" data-page="classes">🎥 Online Classes</button>
+        <button class="nav-link" data-page="results">📝 Tests & Results</button>
+        <button class="nav-link" data-page="notices">📢 Notices</button>
+        <button class="nav-link" data-page="settings">⚙️ Website Settings</button>
+      </nav>
+
+      <button id="logoutBtn" class="logout-btn">↪ Logout</button>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <div>
+          <h2 id="pageTitle">Dashboard</h2>
+          <p class="muted">Manage your coaching institute</p>
+        </div>
+        <span class="admin-label">Administrator</span>
+      </header>
+
+      <section id="pageContent" class="page-content"></section>
+    </main>
+  </div>
+
+  <dialog id="recordDialog" class="record-dialog">
+    <form id="recordForm">
+      <div class="dialog-heading">
+        <h3 id="dialogTitle">Add Record</h3>
+        <button type="button" id="closeDialog" class="icon-btn">✕</button>
+      </div>
+      <div id="formFields" class="form-grid"></div>
+      <div class="dialog-actions">
+        <button type="button" id="cancelDialog" class="secondary-btn">Cancel</button>
+        <button type="submit" class="primary-btn">Save Record</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- <script src="../shared/shared_data.js"></script> -->
+<script src="admin.js"></script>
+</body>
+</html>

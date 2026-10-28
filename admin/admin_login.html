@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | Pragati Classes</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="login-body">
+  <main class="login-card">
+    <div class="brand-icon">P</div>
+    <h1>Pragati Classes</h1>
+    <p class="muted">Admin Panel Login</p>
+
+    <form id="loginForm">
+      <label for="email">Email Address</label>
+      <input id="email" type="email" placeholder="admin@example.com" required>
+
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Enter password" required>
+
+      <button class="primary-btn full-btn" type="submit">Login to Dashboard</button>
+      <p id="loginError" class="error-message"></p>
+    </form>
+
+    <p class="muted small-text">Demo: admin@pragaticlasses.com</p>
+    <p class="muted small-text">Password: Admin@123</p>
+  </main>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const error = document.getElementById("loginError");
+
+      if (email === "admin@pragaticlasses.com" && password === "Admin@123") {
+        sessionStorage.setItem("pragatiAdminLoggedIn", "true");
+        window.location.href = "admin.html";
+      } else {
+        error.textContent = "Incorrect email or password.";
+      }
+    });
+  </script>
+</body>
+</html>

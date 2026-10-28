@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register on pragati classes </title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <section class="intro">
+    <h1>Register on pragati classes</h1>
+    <p>Donec ipsum lorem, sodales a sagittis ut, tristique purus. Aenean in est pretium lectus euismod facilisis. Aliquam dapibus rhoncus ex quis fringilla. Proin interdum eros mauris, hendrerit suscipit lectus cursus et.</p>
+    <!-- <div class="btns">
+      <button class="btn green" type="button">Know More</button>
+      <button class="btn pink" type="button">Get Started</button>
+    </div> -->
+  </section>
+
+  <section class="card">
+    <h2>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.25V21h3.75L17.8 9.94l-3.75-3.75L3 17.25zM20.7 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+      Register here
+    </h2>
+
+    <form id="regForm" novalidate>
+      <div class="field"><input type="text" name="name" placeholder="Enter Full Name" aria-label="Full name" required></div>
+      <div class="field"><input type="email" name="email" placeholder="Email" aria-label="Email" required></div>
+      <div class="field"><input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone number" required></div>
+      <div class="field"><input type="password" name="password" placeholder="Password" aria-label="Password" minlength="6" required></div>
+      
+      <label class="terms">
+        <input type="checkbox" name="terms" required>
+        <span>I agree to the <a href="#">Terms and Conditions</a></span>
+      </label>
+        
+          <p id="errorMsg" role="alert"></p>
+
+      <button class="submit" type="submit">Register</button>
+    </form>
+
+<script>
+
+const form = document.getElementById("regForm");
+const errorMsg = document.getElementById("errorMsg");
+
+form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const name = form.elements["name"].value.trim();
+    const email = form.elements["email"].value.trim().toLowerCase();
+    const phone = form.elements["phone"].value.trim();
+    const password = form.elements["password"].value;
+    const terms = form.elements["terms"].checked;
+
+    errorMsg.style.color = "#ffb3b3";
+
+    if (!name) {
+        errorMsg.textContent = "Please enter your full name.";
+        form.elements["name"].focus();
+        return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        errorMsg.textContent = "Please enter a valid email address.";
+        form.elements["email"].focus();
+        return;
+    }
+
+    if (!/^[0-9]{10}$/.test(phone)) {
+        errorMsg.textContent = "Enter a valid 10-digit phone number.";
+        form.elements["phone"].focus();
+        return;
+    }
+
+    if (password.length < 6) {
+        errorMsg.textContent = "Password must contain at least 6 characters.";
+        form.elements["password"].focus();
+        return;
+    }
+
+    if (!terms) {
+        errorMsg.textContent = "Please accept the Terms and Conditions.";
+        form.elements["terms"].focus();
+        return;
+    }
+
+    try {
+        const students = JSON.parse(
+            localStorage.getItem("pragatiStudents") || "[]"
+        );
+
+        // const alreadyRegistered = students.some(function (student) {
+        //     return student.phone === phone || student.email === email;
+        // });
+
+        // if (alreadyRegistered) {
+        //     errorMsg.textContent =
+        //         "This phone number or email is already registered.";
+        //     return;
+        // }
+
+        students.push({
+            name: name,
+            email: email,
+            phone: phone,
+            password: password,
+        });
+
+        localStorage.setItem("pragatiStudents", JSON.stringify(students));
+
+        errorMsg.style.color = "#2fe09b";
+        errorMsg.textContent =
+            "Registration successful! Redirecting to login...";
+
+        form.querySelector(".submit").disabled = true;
+
+        setTimeout(function () {
+            window.location.href = "IndexLogin.html";
+        }, 1200);
+
+    } catch (error) {
+        errorMsg.style.color = "#ffb3b3";
+        errorMsg.textContent =
+            "Unable to save registration. Please try again.";
+    }
+});
+
+</script>
+
+</body>
+</html>

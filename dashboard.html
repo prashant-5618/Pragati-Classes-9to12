@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard | Pragati Classes</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="brand">
+            <div class="brand-logo">P</div>
+            <div>
+                <h2>Pragati Classes</h2>
+                <span>Student Portal</span>
+            </div>
+        </div>
+
+        <p class="menu-label">MAIN MENU</p>
+
+        <nav class="navigation">
+            <a href="#" class="nav-link active" data-section="overview">▦ Dashboard</a>
+            <a href="#" class="nav-link" data-section="materials">📄 Study Materials</a>
+            <a href="#" class="nav-link" data-section="courses">📚 My Courses</a>
+            <a href="#" class="nav-link" data-section="classes">🎥 Online Classes</a>
+            <a href="#" class="nav-link" data-section="results">📊 Results</a>
+            <a href="#" class="nav-link" data-section="profile">👤 My Profile</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="IndexLogin.html" class="nav-link logout" id="logoutBtn">↪ Logout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+
+            <div>
+                <h2 id="pageTitle">Dashboard</h2>
+                <p>Welcome back to Pragati Classes!</p>
+            </div>
+
+            <div class="topbar-right">
+               
+<button class="notification" id="notificationBtn" aria-label="Notifications">
+    🔔
+    <span id="notificationBadge" class="notification-badge" style="display:none;">0</span>
+</button>
+
+                <div class="avatar" id="topAvatar">S</div>
+            </div>
+        </header>
+
+        <!-- Dashboard Overview -->
+        <section class="section-page active" id="overview">
+
+            
+<div class="welcome-banner">
+    <div>
+        <p class="eyebrow">STUDENT LEARNING PORTAL</p>
+        <h1>Hello, <span id="welcomeName">Student</span> 👋</h1>
+        <p>Keep learning, keep growing. Your future starts here.</p>
+    </div>
+    <div class="welcome-icon">🎓</div>
+</div>
+
+<!-- <div class="panel" style="margin: 20px 0;">
+    <h3>Your Selected Class</h3>
+    <p id="dashboardCourse">Loading class...</p>
+</div> -->
+
+<!-- Explore Our Batches -->
+
+<!-- Select Your Board -->
+<div class="explore-batches">
+    <div class="batch-heading">
+        <h2>Choose Your Board</h2>
+        <p>Select your board to explore available batches.</p>
+    </div>
+
+    <div class="batch-grid">
+
+        <article class="batch-card">
+            <div class="batch-icon">📘</div>
+            <h3>BSEB Board</h3>
+            <p>Explore Bihar Board batches from Class 9th to 12th.</p>
+            <button class="primary-btn" data-go="bsebBatches">
+                Explore BSEB →
+            </button>
+        </article>
+
+        <article class="batch-card">
+            <div class="batch-icon">🎓</div>
+            <h3>CBSE Board</h3>
+            <p>Explore CBSE batches from Class 9th to 12th.</p>
+            <button class="primary-btn" data-go="cbseBatches">
+                Explore CBSE →
+            </button>
+        </article>
+
+    </div>
+</div>
+
+<!-- Crash Courses Card -->
+<div class="explore-batches">
+    <div class="batch-heading">
+        <h2>Crash Courses</h2>
+        <p>Quick revision and exam preparation for Class 10th and 12th.</p>
+    </div>
+
+    <div class="batch-grid">
+        <article class="batch-card">
+            <div class="batch-icon">🎯</div>
+            <h3>Class 10th Crash Course</h3>
+            <p>Video lectures, revision notes and practice tests for board exams.</p>
+            <button class="primary-btn" data-go="class10Crash">
+                Explore Class 10th →
+            </button>
+        </article>
+
+        <article class="batch-card">
+            <div class="batch-icon">🚀</div>
+            <h3>Class 12th Crash Course</h3>
+            <p>Video lectures, revision notes and tests for board exam preparation.</p>
+            <button class="primary-btn" data-go="class12Crash">
+                Explore Class 12th →
+            </button>
+        </article>
+    </div>
+</div>
+</section>
+<!-- Class 10th Crash Course -->
+<section class="section-page" id="class10Crash">
+    <div class="section-heading">
+        <h2>Class 10th Crash Course 🎯</h2>
+        <p>Video lectures for Class 10th</p>
+    </div>
+    <div id="class10VideoList" class="course-cards"></div>
+</section>
+
+<!-- Class 12th Crash Course -->
+<section class="section-page" id="class12Crash">
+    <div class="section-heading">
+        <h2>Class 12th Crash Course 🚀</h2>
+        <p>Video lectures for Class 12th</p>
+    </div>
+    <div id="class12VideoList" class="course-cards"></div>
+</section>
+
+
+
+<!-- BSEB Board Batches -->
+<section class="section-page" id="bsebBatches">
+    <div class="batch-heading">
+        <h2>Explore Our BSEB Batches</h2>
+        <p>Choose your Bihar Board class.</p>
+    </div>
+
+    <div class="batch-grid">
+        <article class="batch-card">
+            <div class="batch-icon">📘</div>
+            <h3>Class 9th</h3>
+            <p>Build strong concepts and learn fundamentals.</p>
+            <button class="primary-btn" data-go="class9Courses">
+                View Courses →
+            </button>
+        </article>
+
+        <article class="batch-card">
+            <div class="batch-icon">🎯</div>
+            <h3>Class 10th</h3>
+            <p>Prepare for Bihar Board examinations.</p>
+            <button class="primary-btn" data-go="class10Courses">
+                View Courses →
+            </button>
+        </article>
+
+        <article class="batch-card">
+            <div class="batch-icon">🚀</div>
+            <h3>Class 11th</h3>
+            <p>Strengthen your concepts and foundation.</p>
+            <button class="primary-btn" data-go="class11Courses">
+                View Courses →
+            </button>
+        </article>
+
+        <article class="batch-card">
+            <div class="batch-icon">🏆</div>
+            <h3>Class 12th</h3>
+            <p>Prepare for Bihar Board examinations.</p>
+            <button class="primary-btn" data-go="class12Courses">
+                View Courses →
+            </button>
+        </article>
+    </div>
+
+    <button class="primary-btn" data-go="overview">
+        ← Back to Dashboard
+    </button>
+</section>
+
+<!-- CBSE Board Batches -->
+<section class="section-page" id="cbseBatches">
+    <div class="batch-heading">
+        <h2>Explore Our CBSE Batches</h2>
+        <p>Choose your CBSE class.</p>
+    </div>
+
+    <div class="batch-grid">
+        <article class="batch-card">
+            <div class="batch-icon">📘</div>
+            <h3>Class 9th</h3>
+            <p>Build strong concepts and learn fundamentals.</p>
+            <button class="primary-btn" data-go="class9Courses">
+                View Courses →
+            </button>
+        </article>
+
+        <article class="batch-card">
+            <div class="batch-icon">🎯</div>
+            <h3>Class 10th</h3>
+            <p>Prepare for CBSE board examinations.</p>
+            <button class="primary-btn" data-go="class10Courses">
+                View Courses →
+            </button>
+        </article>
+
+        <article class="batch-card">
+            <div class="batch-icon">🚀</div>
+            <h3>Class 11th</h3>
+            <p>Strengthen your concepts and foundation.</p>
+            <button class="primary-btn" data-go="class11Courses">
+                View Courses →
+            </button>
+        </article>
+
+        <article class="batch-card">
+            <div class="batch-icon">🏆</div>
+            <h3>Class 12th</h3>
+            <p>Prepare for CBSE board examinations.</p>
+            <button class="primary-btn" data-go="class12Courses">
+                View Courses →
+            </button>
+        </article>
+    </div>
+
+    <button class="primary-btn" data-go="overview">
+        ← Back to Dashboard
+    </button>
+</section>
+
+        <!-- My Courses -->
+         
+<!-- My Courses Main Section -->
+
+<!-- My Courses -->
+<section class="section-page" id="courses">
+    <h2 class="section-heading">My Courses</h2>
+    <p class="section-description">
+        Your purchased batches will appear here.
+    </p>
+
+    <div class="panel empty-state" id="noPurchasedCourses">
+        <div>📚</div>
+        <h3>No courses purchased yet</h3>
+        <p>
+            You haven't purchased any batch yet.
+            Your enrolled courses will appear here.
+        </p>
+    </div>
+
+    <div class="course-cards" id="purchasedCoursesList"></div>
+</section>
+
+
+
+        
+<!-- Chapter-wise Notes -->
+<section class="section-page" id="chapterNotes">
+    <h2 class="section-heading">Chapter-wise Notes</h2>
+    <p class="section-description">Explore subject-wise notes.</p>
+    <div class="panel">
+        <h3>Notes Coming Soon</h3>
+        <p>Chapter-wise notes will be available here.</p>
+    </div>
+    <button class="primary-btn" data-go="materials">← Back to Study Materials</button>
+</section>
+
+<!-- PDF Notes -->
+<section class="section-page" id="pdfNotes">
+    <h2 class="section-heading">PDF Notes</h2>
+    <p class="section-description">Access your study PDFs.</p>
+    <div class="panel">
+        <h3>PDFs Coming Soon</h3>
+        <p>PDF study notes will be added here.</p>
+    </div>
+    <button class="primary-btn" data-go="materials">← Back to Study Materials</button>
+</section>
+
+<!-- Practice Questions -->
+<section class="section-page" id="practiceQuestions">
+    <h2 class="section-heading">Practice Questions</h2>
+    <div class="panel">
+        <h3>Practice Questions Coming Soon</h3>
+        <p>Questions for exam preparation will be added here.</p>
+    </div>
+    <button class="primary-btn" data-go="materials">← Back to Study Materials</button>
+</section>
+
+<!-- Sample Papers -->
+<section class="section-page" id="samplePapers">
+    <h2 class="section-heading">Sample & Previous Papers</h2>
+    <div class="panel">
+        <h3>Papers Coming Soon</h3>
+        <p>Sample and previous-year papers will be added here.</p>
+    </div>
+    <button class="primary-btn" data-go="materials">← Back to Study Materials</button>
+</section>
+
+<!-- Video Lectures -->
+<section class="section-page" id="videoLectures">
+    <h2 class="section-heading">Video Lectures</h2>
+    <div class="panel">
+        <h3>Video Lectures Coming Soon</h3>
+        <p>Educational videos will be added here.</p>
+    </div>
+    <button class="primary-btn" data-go="materials">← Back to Study Materials</button>
+</section>
+
+        <!-- Class 9th Courses -->
+<section class="section-page" id="class9Courses">
+    <h2 class="section-heading">Class 9th Courses</h2>
+    <p class="section-description">Explore your subjects.</p>
+
+    <div class="course-cards">
+        <article class="panel course-card">
+            <h3>Mathematics</h3>
+            <p>Concepts, formulas and practice.</p>
+            <button class="primary-btn"
+                data-message="Class 9th Mathematics materials will be added soon.">
+                Open Subject
+            </button>
+        </article>
+
+        <article class="panel course-card">
+            <h3>Science</h3>
+            <p>Physics, Chemistry and Biology concepts.</p>
+            <button class="primary-btn"
+                data-message="Class 9th Science materials will be added soon.">
+                Open Subject
+            </button>
+        </article>
+
+        <article class="panel course-card">
+            <h3>English & Social Science</h3>
+            <p>Explore language and social science topics.</p>
+            <button class="primary-btn"
+                data-message="Class 9th English and Social Science materials will be added soon.">
+                Open Subject
+            </button>
+        </article>
+    </div>
+
+    <button class="primary-btn" data-go="courses">← Back to My Courses</button>
+</section>
+
+<!-- Class 10th Courses -->
+<section class="section-page" id="class10Courses">
+    <h2 class="section-heading">Class 10th Courses</h2>
+    <p class="section-description">Prepare for your board examinations.</p>
+
+    <div class="course-cards">
+        <article class="panel course-card">
+            <h3>Mathematics</h3>
+            <p>Formulas, chapters and practice questions.</p>
+            <button class="primary-btn"
+                data-message="Class 10th Mathematics materials will be added soon.">
+                Open Subject
+            </button>
+        </article>
+
+        <article class="panel course-card">
+            <h3>Science</h3>
+            <p>Physics, Chemistry and Biology concepts.</p>
+            <button class="primary-btn"
+                data-message="Class 10th Science materials will be added soon.">
+                Open Subject
+            </button>
+        </article>
+
+        <article class="panel course-card">
+            <h3>English & Social Science</h3>
+            <p>Prepare with lessons and revision.</p>
+            <button class="primary-btn"
+                data-message="Class 10th English and Social Science materials will be added soon.">
+                Open Subject
+            </button>
+        </article>
+    </div>
+
+    <button class="primary-btn" data-go="courses">← Back to My Courses</button>
+</section>
+
+<!-- Class 11th Courses -->
+<section class="section-page" id="class11Courses">
+    <h2 class="section-heading">Class 11th Courses</h2>
+    <p class="section-description">Choose your subjects or stream.</p>
+
+    <div class="course-cards">
+        <article class="panel course-card">
+            <h3>Science</h3>
+            <p>Physics, Chemistry, Mathematics or Biology.</p>
+            <button class="primary-btn"
+                data-message="Class 11th Science materials will be added soon.">
+                Explore Subjects
+            </button>
+        </article>
+
+        <article class="panel course-card">
+            <h3>Commerce</h3>
+            <p>Explore Accountancy, Business Studies and Economics.</p>
+            <button class="primary-btn"
+                data-message="Class 11th Commerce materials will be added soon.">
+                Explore Subjects
+            </button>
+        </article>
+
+        <article class="panel course-card">
+            <h3>Arts / Humanities</h3>
+            <p>Explore relevant humanities subjects.</p>
+            <button class="primary-btn"
+                data-message="Class 11th Arts materials will be added soon.">
+                Explore Subjects
+            </button>
+        </article>
+    </div>
+
+    <button class="primary-btn" data-go="courses">← Back to My Courses</button>
+</section>
+
+<!-- Class 12th Courses -->
+<section class="section-page" id="class12Courses">
+    <h2 class="section-heading">Class 12th Courses</h2>
+    <p class="section-description">Prepare for board examinations.</p>
+
+    <div class="course-cards">
+        <article class="panel course-card">
+            <h3>Science</h3>
+            <p>Physics, Chemistry, Mathematics or Biology.</p>
+            <button class="primary-btn"
+                data-message="Class 12th Science materials will be added soon.">
+                Explore Subjects
+            </button>
+        </article>
+
+        <article class="panel course-card">
+            <h3>Commerce</h3>
+            <p>Accountancy, Business Studies and Economics.</p>
+            <button class="primary-btn"
+                data-message="Class 12th Commerce materials will be added soon.">
+                Explore Subjects
+            </button>
+        </article>
+
+        <article class="panel course-card">
+            <h3>Arts / Humanities</h3>
+            <p>Explore relevant humanities subjects.</p>
+            <button class="primary-btn"
+                data-message="Class 12th Arts materials will be added soon.">
+                Explore Subjects
+            </button>
+        </article>
+    </div>
+
+    <button class="primary-btn" data-go="courses">← Back to My Courses</button>
+</section>
+
+        <!-- Study Materials -->
+        
+<!-- Study Materials -->
+<section class="section-page" id="materials">
+    <h2 class="section-heading">Study Materials</h2>
+    <p class="section-description">
+        Learn, practise and prepare for your examinations.
+    </p>
+    <div class="panel">
+    <h3>📚 Materials Added by Admin</h3>
+    <div id="studentMaterialsList">
+        <p>Loading study materials...</p>
+    </div>
+</div>
+
+    <div class="study-materials-grid">
+        <div class="study-material-card">
+            <div class="study-material-icon">📚</div>
+            <h3>Chapter-wise Notes</h3>
+            <p>Notes organised by subject and chapter.</p>
+            <button class="primary-btn" data-go="chapterNotes">Explore Notes</button>
+        </div>
+
+        <div class="study-material-card">
+            <div class="study-material-icon">📄</div>
+            <h3>PDF Notes</h3>
+            <p>Access notes in PDF format.</p>
+            <button class="primary-btn" data-go="pdfNotes">View PDFs</button>
+        </div>
+
+        <div class="study-material-card">
+            <div class="study-material-icon">📝</div>
+            <h3>Practice Questions</h3>
+            <p>Practise questions for exam preparation.</p>
+            <button class="primary-btn" data-go="practiceQuestions">Start Practice</button>
+        </div>
+
+        <div class="study-material-card">
+            <div class="study-material-icon">📑</div>
+            <h3>Sample & Previous Papers</h3>
+            <p>Prepare with sample and previous-year papers.</p>
+            <button class="primary-btn" data-go="samplePapers">View Papers</button>
+        </div>
+
+        <div class="study-material-card">
+            <div class="study-material-icon">🎥</div>
+            <h3>Video Lectures</h3>
+            <p>Learn through educational videos.</p>
+            <button class="primary-btn" data-go="videoLectures">Watch Videos</button>
+        </div>
+    </div>
+</section>
+
+        
+<!-- 1. Chapter-wise Notes -->
+        <!-- Online Classes -->
+       
+<!-- Online Classes -->
+<section class="section-page" id="classes">
+    <h2 class="section-heading">Online Classes</h2>
+
+    <div id="studentClassesList">
+        <div class="panel empty-state">
+            <div>🎥</div>
+            <h3>No live classes scheduled</h3>
+            <p>Your class timetable and joining links will appear here.</p>
+        </div>
+    </div>
+</section>
+       
+<!-- Results -->
+<section class="section-page" id="results">
+    <h2 class="section-heading">Results &amp; Performance</h2>
+
+    <div id="studentResultsList">
+        <div class="panel empty-state">
+            <div>📊</div>
+            <h3>No results available yet</h3>
+            <p>Your test results will appear here once marks are connected.</p>
+        </div>
+    </div>
+</section>
+
+
+        <!-- Profile -->
+        <section class="section-page" id="profile">
+            <h2 class="section-heading">My Profile</h2>
+
+            <div class="panel profile-panel">
+                <div class="profile-avatar" id="profileAvatar">S</div>
+                <h2 id="profileName">Student</h2>
+                <p class="muted">Pragati Classes Student</p>
+
+                <form id="profileForm">
+                    <label for="studentName">Full Name</label>
+                    <input id="studentName" type="text" placeholder="Enter your name" required readonly>
+
+                    <label for="studentEmail">Email Address</label>
+                    <input id="studentEmail" type="email" placeholder="Enter your email" readonly>
+
+                    <label for="studentPhone">Phone Number</label>
+                    <input id="studentPhone" type="tel" placeholder="Enter your phone number" readonly>
+                
+                    <!-- <label for="studentCourse">Selected Course</label>
+                    <input id="studentCourse" type="text" placeholder="Your selected course" readonly> -->
+
+                    <!-- <button class="primary-btn" type="submit">Save Profile</button> -->
+                </form>
+                <p class="muted">Profile is saved in this browser until the backend is connected.</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            © 2026 Pragati Classes. All rights reserved.
+        </footer>
+
+    </main>
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+
+<!-- JavaScript -->
+<script>
+    const sidebar = document.getElementById("sidebar");
+    const menuToggle = document.getElementById("menuToggle");
+    const overlay = document.getElementById("sidebarOverlay");
+    const navLinks = document.querySelectorAll(".nav-link[data-section]");
+    const pages = document.querySelectorAll(".section-page");
+
+    function closeSidebar() {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("show");
+        menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    menuToggle.addEventListener("click", function () {
+        const isOpen = sidebar.classList.toggle("open");
+        overlay.classList.toggle("show", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    overlay.addEventListener("click", closeSidebar);
+
+    function showSection(sectionId) {
+        const target = document.getElementById(sectionId);
+        if (!target) return;
+
+        pages.forEach(page => page.classList.remove("active"));
+        target.classList.add("active");
+
+        navLinks.forEach(link => {
+            link.classList.toggle("active", link.dataset.section === sectionId);
+        });
+
+        const activeLink = document.querySelector(
+            '.nav-link[data-section="' + sectionId + '"]'
+        );
+
+        document.getElementById("pageTitle").textContent =
+            activeLink ? activeLink.textContent.trim() : "Dashboard";
+
+        closeSidebar();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+            showSection(link.dataset.section);
+        });
+    });
+
+    document.querySelectorAll("[data-go]").forEach(button => {
+        button.addEventListener("click", function () {
+            showSection(button.dataset.go);
+        });
+    });
+
+   
+document.querySelectorAll("[data-go]").forEach(button => {
+    button.addEventListener("click", function () {
+        const sectionId = this.dataset.go;
+        showSection(sectionId);
+
+        if (sectionId === "class10Crash") {
+            showCrashVideos("class10", "class10VideoList");
+        }
+
+        if (sectionId === "class12Crash") {
+            showCrashVideos("class12", "class12VideoList");
+        }
+    });
+});
+
+
+   
+const NOTICE_DB_KEY = "pragatiClassesDB";
+
+function getPublishedNotices() {
+    try {
+        const db = JSON.parse(
+            localStorage.getItem(NOTICE_DB_KEY)
+        ) || {};
+
+        return Array.isArray(db.notices)
+            ? db.notices.filter(notice => notice.status === "Published")
+            : [];
+    } catch (error) {
+        console.error("Notice loading error:", error);
+        return [];
+    }
+}
+
+const READ_NOTICES_KEY = "pragatiReadNotices";
+
+function getReadNotices() {
+    try {
+        return JSON.parse(
+            localStorage.getItem(READ_NOTICES_KEY)
+        ) || [];
+    } catch {
+        return [];
+    }
+}
+
+function updateNotificationBadge() {
+    const badge = document.getElementById("notificationBadge");
+    if (!badge) return;
+
+    const notices = getPublishedNotices();
+    const read = getReadNotices();
+
+    const unread = notices.filter(notice =>
+        !read.includes(
+            (notice.title || "Notice") + "|" + (notice.date || "")
+        )
+    ).length;
+
+    badge.textContent = unread > 99 ? "99+" : unread;
+    badge.style.display = unread > 0 ? "flex" : "none";
+}
+
+function showNoticeNotifications() {
+    const notices = getPublishedNotices();
+
+    if (notices.length === 0) {
+        alert("Abhi koi published notice nahi hai.");
+        return;
+    }
+
+    const message = notices.map((notice, index) =>
+        `${index + 1}. ${notice.title || "Notice"}\n` +
+        `Category: ${notice.category || "General"}\n` +
+        `Date: ${notice.date || "Not specified"}\n` +
+        `${notice.description || ""}`
+    ).join("\n\n--------------------\n\n");
+
+    alert("📢 Published Notices\n\n" + message);
+
+    const read = getReadNotices();
+
+    notices.forEach(notice => {
+        const key =
+            (notice.title || "Notice") + "|" + (notice.date || "");
+
+        if (!read.includes(key)) read.push(key);
+    });
+
+    localStorage.setItem(READ_NOTICES_KEY, JSON.stringify(read));
+    updateNotificationBadge();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const bell = document.getElementById("notificationBtn");
+
+    if (bell) {
+        bell.addEventListener("click", showNoticeNotifications);
+    }
+
+    updateNotificationBadge();
+});
+
+window.addEventListener("storage", function (event) {
+    if (event.key === "pragatiClassesDB") {
+        updateNotificationBadge();
+    }
+});
+
+
+    
+const loggedInStudent = JSON.parse(
+    sessionStorage.getItem("pragatiLoggedInStudent") ||
+    localStorage.getItem("pragatiLoggedInStudent") ||
+    "null"
+);
+
+if (!loggedInStudent) {
+    window.location.replace("IndexLogin.html");
+} else {
+   
+const profileKey = "pragatiStudentProfile_" + loggedInStudent.phone;
+
+const savedProfile = JSON.parse(
+    localStorage.getItem(profileKey) || "null"
+);
+
+const currentStudent = {
+    ...loggedInStudent,
+    ...(savedProfile || {})
+};
+
+
+    const studentName = document.getElementById("studentName");
+    const studentEmail = document.getElementById("studentEmail");
+    const studentPhone = document.getElementById("studentPhone");
+
+    studentName.value = currentStudent.name || "";
+    studentEmail.value = currentStudent.email || "";
+    studentPhone.value = currentStudent.phone || "";
+
+
+    function updateStudentDisplay(name) {
+        const displayName = name || "Student";
+
+        document.getElementById("welcomeName").textContent =
+            displayName;
+        document.getElementById("profileName").textContent =
+            displayName;
+
+        const initial = displayName.charAt(0).toUpperCase();
+        document.getElementById("topAvatar").textContent = initial;
+        document.getElementById("profileAvatar").textContent = initial;
+    }
+
+    updateStudentDisplay(currentStudent.name);
+
+}
+
+    document.getElementById("logoutBtn").addEventListener("click", function (event) {
+    event.preventDefault();
+
+    localStorage.removeItem("pragatiLoggedInStudent");
+    sessionStorage.removeItem("pragatiLoggedInStudent");
+
+    window.location.href = "IndexLogin.html";
+    });
+
+   
+function showCrashVideos(className, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    let db = {};
+
+    try {
+        db = JSON.parse(
+            localStorage.getItem("pragatiClassesDB") || "{}"
+        );
+    } catch (error) {
+        console.error("Could not load crash videos:", error);
+    }
+
+    const videos = (Array.isArray(db.crashVideos) ? db.crashVideos : [])
+        .filter(video => {
+            const videoClass = String(video.className || "")
+                .trim().toLowerCase();
+
+            const selectedClass =
+                className === "class10" ? "class 10" : "class 12";
+
+            return videoClass === selectedClass &&
+                String(video.status || "").trim().toLowerCase() === "active";
+        });
+
+    if (videos.length === 0) {
+        container.innerHTML = `
+            <div class="panel course-card">
+                <h3>📚 Videos Not Available</h3>
+                <p>No videos available yet. Please check back later.</p>
+            </div>
+        `;
+        return;
+    }
+
+    container.replaceChildren();
+
+    videos.forEach(video => {
+        const card = document.createElement("div");
+        card.className = "panel course-card";
+
+        const title = document.createElement("h3");
+        title.textContent = video.title || "Crash Course Video";
+
+        const player = document.createElement("video");
+        player.controls = true;
+        player.style.width = "100%";
+
+        const source = document.createElement("source");
+        source.src = video.url;
+        source.type = "video/mp4";
+
+        player.appendChild(source);
+        card.append(title, player);
+        container.appendChild(card);
+    });
+}
+
+function refreshCrashVideos() {
+    showCrashVideos("class10", "class10VideoList");
+    showCrashVideos("class12", "class12VideoList");
+}
+
+refreshCrashVideos();
+
+window.addEventListener("storage", event => {
+    if (event.key === "pragatiClassesDB" || event.key === null) {
+        refreshCrashVideos();
+    }
+});
+
+
+
+showCrashVideos("class10", "class10VideoList");
+showCrashVideos("class12", "class12VideoList");
+
+</script>
+
+<script src="shared/shared_data.js"></script>
+<script src="courses_display.js"></script>
+<!-- <script src="student_admin_courses.js"></script> -->
+<script src="student_classes_results.js"></script>
+<script src="student_materials.js"></script>
+</body>
+</html>

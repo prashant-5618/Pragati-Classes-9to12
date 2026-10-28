@@ -1,0 +1,131 @@
+  :root {
+    --green: #2fe09b;
+    --pink: #ff4b7d;
+    /* Put your photo next to this file and name it classroom.jpg */
+    --bg-image: url('gemini-svg.svg');
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'poppins', sans-serif;
+    color: white;
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(103, 76, 199, 0.55), rgba(79, 97, 178, 0.55)),
+      var(--bg-image),
+      linear-gradient(135deg, #1f3b3a, #0e1a1a);
+     background-size: auto, 100% auto, cover;
+    background-position: center, center top, center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-attachment: scroll;
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrap {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  /* Left side */
+  .intro { text-align: center; }
+  .intro svg { width: 64px; height: 64px; fill: #fff; margin-bottom: 24px; }
+  .intro h1 {
+    font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: #fff;
+    margin-bottom: 20px;
+
+  }
+  .intro p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: .95rem;
+    line-height: 1.9;
+    max-width: 560px;
+    margin: 24px auto 32px;
+  }
+  .btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    font: 400 1rem 'Poppins', sans-serif;
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    padding: 12px 30px;
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+    transition: filter .2s;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .btn.green { background: var(--green); }
+  .btn.pink  { background: var(--pink); }
+
+  /* Right side form */
+  .card {
+  background: rgba(40, 36, 100, .65);
+  border: 1px solid rgba(255,255,255,.55);
+  padding: 28px 32px 30px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 16px;
+}
+
+  .card h2 {
+    font-weight: 300;
+    font-size: 1.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .card h2 svg { width: 26px; height: 26px; fill: #fff; }
+  .field { margin-bottom: 22px; }
+  .field input, .field select {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(255,255,255,.8);
+    color: #fff;
+    font: 300 1rem 'Poppins', sans-serif;
+    padding: 12px 4px;
+    outline: none;
+    border-radius: 0;
+  }
+  .field input::placeholder { color: rgba(255,255,255,.75); }
+  .field input:focus, .field select:focus { border-bottom-color: var(--green); }
+  .field select option { color: #111; }
+  .terms { display: flex; align-items: center; gap: 10px; margin: 28px 0; font-size: 1rem; }
+  .terms input { width: 16px; height: 16px; accent-color: var(--green); }
+  .terms a { color: rgba(255,255,255,.75); text-decoration: none; font-weight: 300; }
+  .terms a:hover { color: var(--green); }
+  .submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--green);
+    color: #fff;
+    border: 0;
+    font: 400 1.1rem 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: filter .2s;
+  }
+  .submit:hover { filter: brightness(1.08); }
+  .btn:focus-visible, .submit:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+  footer { text-align: center; padding: 20px; font-size: .9rem; letter-spacing: 1px; font-weight: 300; }
+
+  @media (max-width: 860px) {
+    .wrap { grid-template-columns: 1fr; }
+    .card { padding: 30px 24px; }
+  }

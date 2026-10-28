@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forgot Password | Pragati Classes</title>
+<link rel="stylesheet" href="Forgot.css">
+</head>
+<body>
+<div class="page">
+<section class="intro">
+    <h1>WELCOME TO PRAGATI CLASSES</h1>
+    <p>
+        Reset your password in a few quick steps.
+        Keep learning, keep growing.
+        Your learning journey continues here!
+    </p>
+</section>
+
+  <section class="side">
+    <main class="card">
+      <h2>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+        <span id="title">FORGOT PASSWORD</span>
+      </h2>
+      <p class="sub" id="sub">Enter the mobile number registered with your account. We will send you a 6-digit OTP.</p>
+      <div class="progress" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+
+      <!-- STEP 1: mobile -->
+      <form class="step active" id="s1" novalidate>
+        <div class="field has-prefix">
+          <input id="mobile" type="tel" inputmode="numeric" maxlength="10" placeholder=" " autocomplete="tel-national" required>
+          <label for="mobile">Mobile number</label>
+          <span class="prefix">+91</span>
+        </div>
+        <div class="msg" id="m1" role="alert"></div>
+        <button class="btn" type="submit">Send OTP</button>
+      </form>
+
+      <!-- STEP 2: OTP -->
+      <form class="step" id="s2" novalidate>
+        <div class="otp" id="otp" role="group" aria-label="6-digit OTP">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 2">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 3">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 4">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 5">
+          <input inputmode="numeric" maxlength="1" aria-label="Digit 6">
+        </div>
+        <div class="row">
+          <button type="button" class="link" id="change">Change number</button>
+          <span><span id="timer"></span><button type="button" class="link" id="resend" disabled>Resend OTP</button></span>
+        </div>
+        <div class="msg" id="m2" role="alert"></div>
+        <button class="btn" type="submit">Verify OTP</button>
+      </form>
+
+      <!-- STEP 3: new password -->
+      <form class="step" id="s3" novalidate>
+        <div class="field">
+          <input id="pw1" type="password" placeholder=" " autocomplete="new-password" required>
+          <label for="pw1">New password</label>
+          <button type="button" class="eye" data-for="pw1" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M12 5c-5 0-9 4.5-10 7 1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg></button>
+        </div>
+        <div class="field">
+          <input id="pw2" type="password" placeholder=" " autocomplete="new-password" required>
+          <label for="pw2">Confirm new password</label>
+          <button type="button" class="eye" data-for="pw2" aria-label="Show password"><svg viewBox="0 0 24 24"><path d="M12 5c-5 0-9 4.5-10 7 1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9zm0-7a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg></button>
+        </div>
+        <ul class="rules">
+          <li id="r-len">At least 8 characters</li>
+          <li id="r-mix">A letter and a number</li>
+          <li id="r-match">Both passwords match</li>
+        </ul>
+        <div class="msg" id="m3" role="alert"></div>
+        <button class="btn" type="submit">Save new password</button>
+      </form>
+
+      <!-- STEP 4: success -->
+      <div class="step" id="s4">
+        <div class="done">
+          <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+          <h3>Password changed</h3>
+          <p>You can now log in with your new password.</p>
+        </div>
+        <a href="./IndexLogin.html" class="btn"
+          style="display:block; text-align:center; text-decoration:none;">
+           Back to Login
+        </a>
+      </div>
+
+      <p class="foot" id="foot">Remember your password? <a href="IndexLogin.html">Login</a></p>
+    </main>
+  </section>
+</div>
+
+<script>
+/* ====================================================================
+   BACKEND HOOKS: replace the three functions below with real API calls.
+   DEMO_MODE = true lets you test the whole flow without a server
+   (any mobile number works, and the OTP is 123456).
+   Never check the OTP or save the password only in the browser in production.
+   ==================================================================== */
+const DEMO_MODE = true;
+const LOGIN_URL = "login.html";
+
+const api = {
+  async sendOtp(mobile){
+    if (DEMO_MODE) return wait(700);
+    const r = await fetch("/api/forgot-password/send-otp", {
+      method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mobile})});
+    if(!r.ok) throw new Error((await r.json()).message || "Could not send OTP.");
+  },
+  async verifyOtp(mobile, otp){
+    if (DEMO_MODE){ await wait(600); if(otp!=="123456") throw new Error("Incorrect OTP. Please try again."); return "demo-reset-token"; }
+    const r = await fetch("/api/forgot-password/verify-otp", {
+      method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mobile, otp})});
+    if(!r.ok) throw new Error((await r.json()).message || "Incorrect OTP. Please try again.");
+    return (await r.json()).resetToken;
+  },
+  async resetPassword(mobile, resetToken, password){
+    if (DEMO_MODE) return wait(700);
+    const r = await fetch("/api/forgot-password/reset", {
+      method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({mobile, resetToken, password})});
+    if(!r.ok) throw new Error((await r.json()).message || "Could not change password.");
+  }
+};
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+/* ---------- UI ---------- */
+const $ = id => document.getElementById(id);
+const titles = [
+  ["FORGOT PASSWORD","Enter the mobile number registered with your account. We will send you a 6-digit OTP."],
+  ["VERIFY OTP",""],
+  ["NEW PASSWORD","Choose a new password for your account."],
+  ["ALL DONE",""]
+];
+const bars = document.querySelectorAll(".progress i");
+let mobile = "", resetToken = "", timerId = null;
+
+function go(n){
+  document.querySelectorAll(".step").forEach((s,i)=>s.classList.toggle("active", i===n));
+  bars.forEach((b,i)=>b.classList.toggle("on", i<=n));
+  $("title").textContent = titles[n][0];
+  $("sub").textContent = titles[n][1];
+  $("foot").style.display = n===3 ? "none" : "";
+  const first = document.querySelector("#s"+(n+1)+" input");
+  if(first) setTimeout(()=>first.focus(), 50);
+  if(n===3) setTimeout(()=>$("toLogin").focus(), 50);
+}
+function setMsg(id, text, good){ const m=$(id); m.textContent=text||""; m.classList.toggle("good", !!good); }
+function busy(form, on, label){
+  const b = form.querySelector(".btn");
+  if(on){ b.dataset.l=b.textContent; b.textContent=label; } else { b.textContent=b.dataset.l; }
+  b.disabled = on;
+}
+
+/* Step 1: mobile */
+$("mobile").addEventListener("input", e => { e.target.value = e.target.value.replace(/\D/g,""); setMsg("m1",""); });
+$("s1").addEventListener("submit", async e => {
+  e.preventDefault();
+  const v = $("mobile").value;
+  if(!/^[6-9]\d{9}$/.test(v)) return setMsg("m1","Enter a valid 10-digit mobile number.");
+  busy(e.target, true, "Sending OTP...");
+  try{
+    await api.sendOtp(v);
+    mobile = v;
+    $("sub").textContent = "";
+    titles[1][1] = "We sent a 6-digit OTP to +91 " + v.slice(0,2) + "******" + v.slice(-2) + ".";
+    clearOtp(); setMsg("m2",""); go(1); startTimer(30);
+  }catch(err){ setMsg("m1", err.message); }
+  busy(e.target, false);
+});
+
+/* Step 2: OTP */
+const boxes = [...document.querySelectorAll("#otp input")];
+const otpValue = () => boxes.map(b=>b.value).join("");
+function clearOtp(){ boxes.forEach(b=>b.value=""); $("otp").classList.remove("bad"); }
+boxes.forEach((b,i)=>{
+  b.addEventListener("input", () => {
+    b.value = b.value.replace(/\D/g,"").slice(-1);
+    $("otp").classList.remove("bad"); setMsg("m2","");
+    if(b.value && i<5) boxes[i+1].focus();
+    if(otpValue().length===6) $("s2").requestSubmit();
+  });
+  b.addEventListener("keydown", e => {
+    if(e.key==="Backspace" && !b.value && i>0){ boxes[i-1].value=""; boxes[i-1].focus(); }
+    if(e.key==="ArrowLeft" && i>0) boxes[i-1].focus();
+    if(e.key==="ArrowRight" && i<5) boxes[i+1].focus();
+  });
+  b.addEventListener("paste", e => {
+    const t = (e.clipboardData.getData("text")||"").replace(/\D/g,"").slice(0,6);
+    if(!t) return; e.preventDefault();
+    [...t].forEach((c,k)=>boxes[k].value=c);
+    boxes[Math.min(t.length,5)].focus();
+    if(t.length===6) $("s2").requestSubmit();
+  });
+});
+$("s2").addEventListener("submit", async e => {
+  e.preventDefault();
+  if(otpValue().length<6) return setMsg("m2","Enter all 6 digits of the OTP.");
+  busy(e.target, true, "Verifying...");
+  try{
+    resetToken = await api.verifyOtp(mobile, otpValue());
+    clearInterval(timerId); go(2);
+  }catch(err){
+    $("otp").classList.add("bad"); setMsg("m2", err.message); boxes[0].focus(); boxes.forEach(b=>b.select());
+  }
+  busy(e.target, false);
+});
+function startTimer(sec){
+  clearInterval(timerId);
+  const rs = $("resend"), t = $("timer");
+  rs.disabled = true; rs.style.display="none"; t.style.display="";
+  let left = sec; t.textContent = "Resend OTP in " + left + "s";
+  timerId = setInterval(() => {
+    left--; t.textContent = "Resend OTP in " + left + "s";
+    if(left<=0){ clearInterval(timerId); t.style.display="none"; rs.style.display=""; rs.disabled=false; }
+  }, 1000);
+}
+$("resend").addEventListener("click", async () => {
+  try{ await api.sendOtp(mobile); clearOtp(); boxes[0].focus(); setMsg("m2","A new OTP has been sent.", true); startTimer(30); }
+  catch(err){ setMsg("m2", err.message); }
+});
+$("change").addEventListener("click", () => { clearInterval(timerId); go(0); });
+
+/* Step 3: new password */
+document.querySelectorAll(".eye").forEach(btn => btn.addEventListener("click", () => {
+  const i = $(btn.dataset.for), show = i.type==="password";
+  i.type = show ? "text" : "password";
+  btn.setAttribute("aria-label", show ? "Hide password" : "Show password");
+}));
+function checkRules(){
+  const a=$("pw1").value, b=$("pw2").value;
+  const ok = {len:a.length>=8, mix:/[A-Za-z]/.test(a)&&/\d/.test(a), match:a.length>0&&a===b};
+  $("r-len").classList.toggle("ok", ok.len);
+  $("r-mix").classList.toggle("ok", ok.mix);
+  $("r-match").classList.toggle("ok", ok.match);
+  return ok.len && ok.mix && ok.match;
+}
+["pw1","pw2"].forEach(id => $(id).addEventListener("input", () => { checkRules(); setMsg("m3",""); }));
+$("s3").addEventListener("submit", async e => {
+  e.preventDefault();
+  if(!checkRules()){
+    return setMsg("m3", $("pw1").value!==$("pw2").value && $("pw2").value
+      ? "The two passwords do not match." : "Follow the password rules above.");
+  }
+  busy(e.target, true, "Saving...");
+  try{ await api.resetPassword(mobile, resetToken, $("pw1").value); go(3); }
+  catch(err){ setMsg("m3", err.message); }
+  busy(e.target, false);
+});
+
+$("toLogin").setAttribute("href", LOGIN_URL);
+</script>
+</body>
+</html>
